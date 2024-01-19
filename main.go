@@ -15,13 +15,14 @@ func main() {
 	apiService := restql.GinAPIService{Engine: router}
 
 	// Define an API object
-	api := restql.API{
-		Path:   "/example",
-		Method: "GET",
+	apis := []restql.API{
+		{Path: "/endpoint1", Method: "GET"},
+		{Path: "/endpoint2", Method: "GET"},
+		{Path: "/endpoint3", Method: "GET"},
 	}
 
 	// Use GenerateAPI to add a handler to the Gin engine
-	restql.GenerateAPI(api, &apiService)
+	restql.GenerateAPIs(apis, &apiService)
 
 	// Start the Gin server
 	router.Run(":8080")
