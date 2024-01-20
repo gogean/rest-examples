@@ -3,6 +3,7 @@ parameter_templates:
     name: "id"
     type: "integer"
     description: "Item id"
+    required: true
 
 apis:
   - name: "Foo Get"
