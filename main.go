@@ -12,14 +12,14 @@ func main() {
 	router := gin.Default()
 
 	// Create an instance of GinAPIService
-	apiService := restql.GinAPIService{Engine: router}
+	ginAPIService := restql.GinAPIService{Engine: router}
 
 	// Define an API object
-	config, _ := restql.ReadConfig("restql.yml")
-	apis := restql.GetAPIs(config)
+	apiConfig, _ := restql.GetAPIConfig("restql.yml")
+	apis := restql.GetAPIs(apiConfig)
 
 	// Use GenerateAPI to add a handler to the Gin engine
-	restql.GenerateAPIs(apis, &apiService)
+	restql.GenerateAPIs(apis, &ginAPIService)
 
 	// Start the Gin server
 	router.Run(":8080")
