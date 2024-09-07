@@ -1,0 +1,32 @@
+version: '3'
+services:
+  db:
+    image: mysql:8.0.0
+    container_name: test-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${APP_MARIADB_ROOTPWD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ../.mysql:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - mynetwork
+    command: --bind-address=0.0.0.0
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: test-pma
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: ${APP_MARIADB_ROOTPWD}
+    depends_on:
+      - db
+    ports:
+      - 8000:80
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
