@@ -15,7 +15,7 @@ func main() {
 	ginAPIService := restql.GinAPIService{Engine: router}
 
 	// Define an API object
-	apiConfig, _ := restql.GetAPIConfig("restql.yml")
+	apiConfig, _ := restql.GetAPIConfig("../restql/test-config/restql.yml")
 	apis := restql.GetAPIs(apiConfig)
 
 	// Use GenerateAPI to add a handler to the Gin engine
