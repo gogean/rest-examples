@@ -17,8 +17,7 @@ apis:
     path: "/foo"
     method: "POST"
     description: "Creates a foo item"
-    parameters:
-      - *common_id
-      - name: "name"
-        type: "string"
-        description: "Item name"
+    payload:
+      schema: "payload_schema.json"
+
+    
