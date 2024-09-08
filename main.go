@@ -11,13 +11,16 @@ import (
 )
 
 func main() {
-	dbConnectionString := fmt.Sprintf("%s:%s@(%s:%s)/%s", os.Getenv("APP_DB_HOST"),
-		os.Getenv("APP_DB_PORT"),
+	dbConnectionString := fmt.Sprintf(
+		"%s:%s@(%s:%s)/%s",
 		os.Getenv("APP_DB_USER"),
 		os.Getenv("APP_DB_PWD"),
+		os.Getenv("APP_DB_HOST"),
+		os.Getenv("APP_DB_PORT"),
 		os.Getenv("APP_DB_NAME"))
 
 	db, _ := restql.SQLConnect(dbConnectionString)
+
 	dbConnection := restql.SQL{Connection: db}
 
 	// Create a Gin engine instance
