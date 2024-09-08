@@ -3,11 +3,23 @@
 package main
 
 import (
+	"fmt"
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/gogean/restql"
 )
 
 func main() {
+	dbConnectionString := fmt.Sprintf("%s:%s@(%s:%s)/%s", os.Getenv("APP_DB_HOST"),
+		os.Getenv("APP_DB_PORT"),
+		os.Getenv("APP_DB_USER"),
+		os.Getenv("APP_DB_PWD"),
+		os.Getenv("APP_DB_NAME"))
+
+	db, _ := restql.SQLConnect(dbConnectionString)
+	dbConnection := restql.SQL{Connection: db}
+
 	// Create a Gin engine instance
 	router := gin.Default()
 
@@ -19,7 +31,7 @@ func main() {
 	apis := restql.GetAPIs(apiConfig)
 
 	// Use generateAPI to add a handler to the Gin engine
-	restql.GenerateAPIs(apis, &ginAPIService)
+	restql.GenerateAPIs(apis, &ginAPIService, &dbConnection)
 
 	// Start the Gin server
 	router.Run(":8080")
