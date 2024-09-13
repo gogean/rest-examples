@@ -1,13 +1,13 @@
-module restql-examples
+module rest-examples
 
 go 1.21.5
 
 require (
 	github.com/gin-gonic/gin v1.10.0
-	github.com/gogean/restql v0.0.0-20240608135909-00a83b33f9be
+	github.com/gogean/rest v0.0.0-20240608135909-00a83b33f9be
 )
 
-replace github.com/gogean/restql => ../restql
+replace github.com/gogean/rest => ../rest
 
 require (
 	filippo.io/edwards25519 v1.1.0 // indirect

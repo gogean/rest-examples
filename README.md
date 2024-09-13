@@ -1,4 +1,4 @@
-# restql-examples
+# rest-examples
 
 
 ```
